@@ -1,5 +1,5 @@
 [package]
-name = "boxcars-py"
+name = "uboxcars-py"
 version = "0.1.16"
 authors = ["Justus K <justus.k@protonmail.com>", "Matthew Mage <sciguymjm@gmail.com>"]
 edition = "2021"
