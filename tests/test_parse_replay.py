@@ -1,4 +1,4 @@
-from boxcars_py import parse_replay
+from uboxcars_py import parse_replay
 
 def test_parse_replay():
     with open("tests/replays/REPLAY.replay", "rb") as f:

@@ -6,7 +6,7 @@ edition = "2021"
 exclude = [".*", "tests/", "Makefile"]
 
 [dependencies]
-boxcars = "0.9.10"
+uboxcars = "0.9.10"
 serde_json = "1.0.107"
 
 [dependencies.pyo3]

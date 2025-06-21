@@ -1,7 +1,7 @@
 import os
 import subprocess
 import json
-from boxcars_py import parse_replay
+from uboxcars_py import parse_replay
 
 def parse_via_boxcars(replay_path):
     with open(replay_path, "rb") as f:

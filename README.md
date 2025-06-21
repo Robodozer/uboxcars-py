@@ -1,6 +1,6 @@
 # uboxcars-py
 
-Python bindings for the [Boxcars](https://github.com/nickbabcock/boxcars) Rocket League replay parser.
+Python bindings for the [uboxcars](https://github.com/Robodozer/uboxcars) Rocket League replay parser.
 
 ## Installation
 
@@ -14,7 +14,7 @@ pip install uboxcars-py
 ## Usage
 
 ```py
-from boxcars_py import parse_replay
+from uboxcars_py import parse_replay
 
 with open("your_replay.replay", "rb") as f:
   buf = f.read()

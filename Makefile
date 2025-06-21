@@ -16,7 +16,7 @@ install: dev-packages
 
 .PHONY: publish
 publish:
-	poetry run $(MATURIN) publish --username __token__ --interpreter $(PYTHON)
+    maturin publish --username __token__ --password $$MATURIN_PASSWORD
 
 .PHONY: clean
 clean:

@@ -4,8 +4,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "uboxcars_py"
-version = "0.1.16"
-description = "Python bindings for the Rocket League replay parser boxcars."
+version = "1.0.0"
+description = "Python bindings for the Rocket League replay parser uboxcars."
 authors = ["Justus K <justus.k@pm.me>", "Matthew Mage <sciguymjm@gmail.com>"]
 license = "MIT"
 readme = "README.md"
