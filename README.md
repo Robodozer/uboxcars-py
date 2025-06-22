@@ -1,4 +1,4 @@
-# uboxcars-py
+# uboxcars_py
 
 Python bindings for the [uboxcars](https://github.com/Robodozer/uboxcars) Rocket League replay parser.
 
@@ -8,7 +8,7 @@ Only tested on linux.
 You have to compile it yourself if you are using Windows.
 
 ```
-pip install uboxcars-py
+pip install uboxcars_py
 ```
 
 ## Usage

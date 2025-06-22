@@ -5,7 +5,7 @@ use std::collections::BTreeMap;
 
 #[pyfunction]
 fn parse_replay(py: Python, data: &[u8]) -> PyResult<PyObject> {
-    let replay = uboxcars::ParserBuilder::new(data)
+    let replay = boxcars::ParserBuilder::new(data)
         .must_parse_network_data()
         .on_error_check_crc()
         .parse()
@@ -16,8 +16,8 @@ fn parse_replay(py: Python, data: &[u8]) -> PyResult<PyObject> {
 }
 
 #[pymodule]
-fn uboxcars_py(_py: Python, m: &PyModule) -> PyResult<()> {
-    m.add_wrapped(wrap_pyfunction!(parse_replay))?;
+fn uboxcars_py(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(parse_replay, m)?)?;
     Ok(())
 }
 
@@ -28,24 +28,24 @@ fn to_py_error<E: std::error::Error>(e: E) -> PyErr {
 fn convert_to_py(py: Python, value: &Value) -> PyObject {
     match value {
         Value::Null => py.None(),
-        Value::Bool(b) => b.into_py(py),
+        Value::Bool(b) => b.into_pyobject(py).unwrap().to_owned().into(),
         Value::Number(n) => match n {
-            n if n.is_u64() => n.as_u64().unwrap().into_py(py),
-            n if n.is_i64() => n.as_i64().unwrap().into_py(py),
-            n if n.is_f64() => n.as_f64().unwrap().into_py(py),
+            n if n.is_u64() => n.as_u64().unwrap().into_pyobject(py).unwrap().to_owned().into(),
+            n if n.is_i64() => n.as_i64().unwrap().into_pyobject(py).unwrap().to_owned().into(),
+            n if n.is_f64() => n.as_f64().unwrap().into_pyobject(py).unwrap().to_owned().into(),
             _ => py.None(),
         },
-        Value::String(s) => s.into_py(py),
+        Value::String(s) => s.into_pyobject(py).unwrap().to_owned().into(),
         Value::Array(list) => {
             let list: Vec<PyObject> = list.iter().map(|e| convert_to_py(py, e)).collect();
-            list.into_py(py)
+            list.into_pyobject(py).unwrap().to_owned().into()
         }
         Value::Object(m) => {
             let mut map = BTreeMap::new();
             m.iter().for_each(|(k, v)| {
                 map.insert(k, convert_to_py(py, v));
             });
-            map.into_py(py)
+            map.into_pyobject(py).unwrap().to_owned().into()
         }
     }
 }
